@@ -3,7 +3,6 @@ getwd()
 family <- read.csv("Masterclient List_2018-08-28_1.csv")
 
 View(family)
-
 #a. # of unduplicated customers
 
 
@@ -25,7 +24,6 @@ family$SEX = dplyr::recode(family$SEX, F="Female", f="Female", m="Male", M="Male
 
 newFrame = sqldf("select FOLDER_ID, SEX, count(FOLDER_ID) as num from family group by SEX")
 View(newFrame)
-
 
 
 
@@ -60,7 +58,6 @@ test$age = cut(test$age,
 
 
 
-
 length(test$age)
 
 anyNA(test$age)
@@ -79,7 +76,6 @@ kid = subset(test$age, test$age == 'kid' )
 percentage_kid = (length(kid) / length(test$age))*100
 percentage_kid
 
-
 pre_teen = subset(test$age, test$age == 'pre-teen' )
 percentage_preteen = (length(pre_teen) / length(test$age))*100
 percentage_preteen
@@ -94,7 +90,6 @@ young = subset(test$age, test$age == 'young' )
 percentage_young = (length(young) / length(test$age))*100
 percentage_young
 
-
 last_youth = subset(test$age, test$age == 'last_youth' )
 percentage_last_youth = (length(last_youth) / length(test$age))*100
 percentage_last_youth
@@ -107,12 +102,13 @@ pie(slicesAge, labels = labelsAge, main="Age Group at Program Entry")
 
 
 
-
 #e.Number of unduplicated, Hispanic customers, ages 14-17.
+
 
 
 hispanic = subset(family, family$ETHNICITY == 'Hispanic/Latino')
 View(hispanic)
+
 
 
 hispanic <- sqldf("select FOLDER_ID, ETHNICITY, CAST(min(AgeatProgramEntry) as int) as age from hispanic group by Folder_ID")
@@ -132,7 +128,6 @@ newhispanic$hispanic.age = cut(newhispanic$hispanic.age,
 
 
 summary(newhispanic)
-
 
 
 
@@ -160,11 +155,9 @@ mean(admitdata$date_diff_months)
 # g.Number of customers by county
 
 
+
 county<- sqldf("select FOLDER_ID, COUNTY, CAST(min(AgeatProgramEntry) as int) as age from family group by Folder_ID")
 View(county)
 
 
 summary(county)
-
-
-
