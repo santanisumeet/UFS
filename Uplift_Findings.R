@@ -3,6 +3,7 @@ getwd()
 family <- read.csv("Masterclient List_2018-08-28_1.csv")
 
 View(family)
+
 #a. # of unduplicated customers
 
 
@@ -30,8 +31,6 @@ View(newFrame)
 
 
 
-
-
 # c. Mean age at program entry
 
 
@@ -51,7 +50,7 @@ is.numeric(test$age)
 typeof(test$age)
 
 
-#Discretize age and give labling 
+#Discretize age and give labeling 
 
 
 test$age = cut(test$age,
@@ -80,6 +79,7 @@ kid = subset(test$age, test$age == 'kid' )
 percentage_kid = (length(kid) / length(test$age))*100
 percentage_kid
 
+
 pre_teen = subset(test$age, test$age == 'pre-teen' )
 percentage_preteen = (length(pre_teen) / length(test$age))*100
 percentage_preteen
@@ -90,10 +90,10 @@ percentage_teen = (length(teen) / length(test$age))*100
 percentage_teen
 
 
-
 young = subset(test$age, test$age == 'young' )
 percentage_young = (length(young) / length(test$age))*100
 percentage_young
+
 
 last_youth = subset(test$age, test$age == 'last_youth' )
 percentage_last_youth = (length(last_youth) / length(test$age))*100
@@ -111,10 +111,8 @@ pie(slicesAge, labels = labelsAge, main="Age Group at Program Entry")
 #e.Number of unduplicated, Hispanic customers, ages 14-17.
 
 
-
 hispanic = subset(family, family$ETHNICITY == 'Hispanic/Latino')
 View(hispanic)
-
 
 
 hispanic <- sqldf("select FOLDER_ID, ETHNICITY, CAST(min(AgeatProgramEntry) as int) as age from hispanic group by Folder_ID")
@@ -139,10 +137,7 @@ summary(newhispanic)
 
 
 
-
 # f.Mean length of service for customers who have discharged (in months)
-
-
 
 
 
@@ -163,7 +158,6 @@ admitdata$date_diff_months = admitdata$date_diff/30 #assuming there are 30 days 
 mean(admitdata$date_diff_months)
 
 # g.Number of customers by county
-
 
 
 county<- sqldf("select FOLDER_ID, COUNTY, CAST(min(AgeatProgramEntry) as int) as age from family group by Folder_ID")
