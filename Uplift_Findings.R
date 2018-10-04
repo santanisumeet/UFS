@@ -101,7 +101,6 @@ labelsAge <- c("Toddler" , "Kid",  "Preteen", " Teen" , "Young",  "Old")
 pie(slicesAge, labels = labelsAge, main="Age Group at Program Entry")
 
 
-
 #e.Number of unduplicated, Hispanic customers, ages 14-17.
 
 
